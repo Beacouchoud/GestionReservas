@@ -1,0 +1,12 @@
+Too few arguments to function Model::damereservas(), 0 passed in C:\Users\Bea Couchoud\Documents\2DAW\GestionReservas\app\controller.php on line 142 and exactly 1 expected0.03118900 1581333809
+Too few arguments to function Model::damereservas(), 0 passed in C:\Users\Bea Couchoud\Documents\2DAW\GestionReservas\app\controller.php on line 142 and exactly 1 expected0.02909800 1581333814
+Too few arguments to function Model::damereservas(), 0 passed in C:\Users\Bea Couchoud\Documents\2DAW\GestionReservas\app\controller.php on line 142 and exactly 1 expected0.52425200 1581333923
+Too few arguments to function Model::damereservas(), 0 passed in C:\Users\Bea Couchoud\Documents\2DAW\GestionReservas\app\controller.php on line 142 and exactly 2 expected0.97503500 1581336879
+Too few arguments to function Model::damereservas(), 0 passed in C:\Users\Bea Couchoud\Documents\2DAW\GestionReservas\app\controller.php on line 142 and exactly 2 expected0.01801000 1581336908
+Too few arguments to function Model::damereservas(), 0 passed in C:\Users\Bea Couchoud\Documents\2DAW\GestionReservas\app\controller.php on line 142 and exactly 2 expected0.14298600 1581337174
+Too few arguments to function Model::damereservas(), 0 passed in C:\Users\Bea Couchoud\Documents\2DAW\GestionReservas\app\controller.php on line 142 and exactly 2 expected0.17579900 1581337395
+Too few arguments to function Model::damereservas(), 0 passed in C:\Users\Bea Couchoud\Documents\2DAW\GestionReservas\app\controller.php on line 142 and exactly 2 expected0.68906100 1581337407
+Too few arguments to function Model::damereservas(), 0 passed in C:\Users\Bea Couchoud\Documents\2DAW\GestionReservas\app\controller.php on line 142 and exactly 2 expected0.43750500 1581337518
+Too few arguments to function Model::damereservas(), 0 passed in C:\Users\Bea Couchoud\Documents\2DAW\GestionReservas\app\controller.php on line 142 and exactly 2 expected0.44464100 1581337518
+Too few arguments to function Model::damereservas(), 0 passed in C:\Users\Bea Couchoud\Documents\2DAW\GestionReservas\app\controller.php on line 142 and exactly 2 expected0.94916100 1581337519
+Too few arguments to function Model::damereservas(), 0 passed in C:\Users\Bea Couchoud\Documents\2DAW\GestionReservas\app\controller.php on line 142 and exactly 2 expected0.89423700 1581337523
