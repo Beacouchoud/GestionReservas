@@ -23,14 +23,14 @@ class Model extends PDO
         return $result->fetchAll();
     }
     
-    public function damereservas($f, $a) {
+    public function verReservas($f, $a) {
         $consulta = "select * from reservas where fecha = :fecha and id_aula = :id_aula";
         
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':fecha', $f);
         $result->bindParam(':id_aula', $a);
         $result->execute();
-        return $result->fetchAll();
+        return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function insertarUsuario($n, $a, $e, $p)

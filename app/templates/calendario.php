@@ -2,9 +2,9 @@
 <!-- aqui pondremos El calendario (-_-) o eso creo (╯︵╰,) -->
 <link rel="stylesheet" href="web/css/style.css">
   <div class="content container">
-    <div class="calendar-container row">
-      <div class="calendar col-12 "> 
-        <div class="year-header xs-col-8 sm-col-12 "> 
+    <div class="calendar-container ">
+      <div class="calendar col-12"> 
+        <div class="year-header col-12 "> 
           <span class="left-button" id="prev"> &lang; </span> 
           <span class="year" id="label"></span> 
           <span class="right-button" id="next"> &rang; </span>

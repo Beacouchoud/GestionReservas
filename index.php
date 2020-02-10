@@ -10,8 +10,10 @@
         'aulas' => array('controller' =>'Controller', 'action' =>'aulas'), //aulas disponibles
         'formlogin' => array('controller' =>'Controller', 'action' =>'formlogin'),
         'formregistro' => array('controller' =>'Controller', 'action' =>'formregistro'),
-        'error' => array('controller' =>'Controller', 'action' =>'error'),
-        'calendario' => array('controller' =>'Controller', 'action' =>'calendario') //fechas y horas disponibles
+        'calendario' => array('controller' =>'Controller', 'action' =>'calendario'),
+        'reservas' => array('controller' =>'Controller', 'action' =>'reservas'),
+        'error' => array('controller' =>'Controller', 'action' =>'error')
+      
     );
         // parseo de la ruta
   //  if (isset($_SESSION["user"])) {

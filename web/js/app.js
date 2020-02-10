@@ -3,7 +3,6 @@ var hours = ["08:00 - 09:00","09:00 - 10:00","10:00 - 11:00","11:00 - 12:00", "1
 "19:00 - 20:00", "20:00 - 21:00","21:00 - 22:00"];
 
 
-
 // Setup the calendar with the current date
 $(document).ready(function(){
     var date = new Date();
@@ -18,7 +17,19 @@ $(document).ready(function(){
     init_calendar(date);
     $(".dates-table .table-date").click({date: date}, date_click);
     //show_events(events, months[date.getMonth()], today);
+
+    $(".dates-table .table-date").on("click", function (date){
+        $("#reservas").load("app/templates/reservas.php");
+        var fecha = date.toLocaleDateString();
+        console.log(fecha);
+        $.ajax({url: "index.php?ctl=reservas",type: "GET", data: {fecha: fecha}, success: function(respuesta){
+     //   var reservationsArray = reservations;
+        console.log(fecha);
+    }});
+    });
 });
+
+
 
 // Initialize the calendar by appending the HTML dates
 function init_calendar(date) {
@@ -78,11 +89,7 @@ function date_click(event) {
     $(".active-date").removeClass("active-date");
     $(this).addClass("active-date");
     date.setDate(parseInt($(".active-date").html()));
-    console.log(date);
-    //init_calendar(date);
-   // show_events(event.data.events, event.data.month, event.data.day);
-    $("#reservas").load("app/templates/reservas.php");
-    show_hours(date);
+    
 };
 
 // Event handler for when a month is clicked
@@ -206,15 +213,22 @@ function new_event_json(name, count, date, day) {
 // }
 
 
+
 function show_hours(date) {
-   // console.log(date.data);
+    console.log(date);
+   
     var fecha = date.toLocaleDateString();
-  //  console.log(fecha);
-    $.ajax({url: "index.php",type: "GET", data: {ctl: "calendario", reserva: fecha}, success: function(reservations){
+    console.log(fecha);
+    $.ajax({url: "index.php?ctl=calendario",type: "GET", data: {fecha: fecha}, success: function(){
      //   var reservationsArray = reservations;
         console.log(fecha);
     }});
 }
+
+// $("td").on("click", show_hours);
+
+
+
 
 const months = [ 
     "January", 

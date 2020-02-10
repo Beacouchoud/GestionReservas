@@ -17,12 +17,11 @@
 
 <!-- opcion por si queremos poner un menu -->
 
-<div id="contenido" class="row">
+<div id="contenido" class="d-flex ">
 <!-- aqui pasamos el contenido de cada pagina que guardaremos en contenido -->
-<?php echo $contenido ?>
-<div id="reservas">
-
-</div>
+  <?php echo $contenido ?>
+  <div id="reservas" class="px-3">
+  </div>
 </div>
 
 <div id="pie">

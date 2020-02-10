@@ -136,13 +136,21 @@ class Controller
 
     public function calendario()
     {
+        
+        require __DIR__ . '/templates/calendario.php';
+    }
+
+    public function reservas() {
         try {
             $model = new Model();
-            $fecha = $reserva["fecha"];
-            $id_aula = "208";
+           // $fecha = $_GET["fecha"];
+            $fecha = "25/02/2020";
+            $id_aula = "1";
             $params = array(
-                'reservas' => $model->damereservas($fecha, $id_aula)
+                'reservas' => $model->verReservas($fecha, $id_aula)
             );
+            $a = $model->verReservas($fecha, $id_aula);
+            print_r($a[0]['hora']);
             // Recogemos los dos tipos de excepciones que se pueden producir
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
@@ -151,7 +159,7 @@ class Controller
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
             header('Location: index.php?ctl=error');
         }
-        require __DIR__ . '/templates/calendario.php';
+        require __DIR__ . '/templates/reservas.php';
     }
 
 }
