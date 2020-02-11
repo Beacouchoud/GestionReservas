@@ -1,5 +1,5 @@
 <?php ob_start() ?>
-<div class="col center-block ">
+<div class="col center-block mx-auto">
 
 <h2 class="text-center">Log in</h2>
 <form name="formlogin" method="POST" class="text-center">

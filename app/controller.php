@@ -150,8 +150,7 @@ class Controller
                 'reservas' => $model->reservas($fecha, $id_aula)
             );
             $a = $model->reservas($fecha, $id_aula);
-            print_r($a[0]['hora']);
-            echo $a;
+            echo $_GET['fecha'];
             // Recogemos los dos tipos de excepciones que se pueden producir
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
@@ -160,7 +159,6 @@ class Controller
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
             header('Location: index.php?ctl=error');
         }
-        require __DIR__ . '/templates/reservas.php';
     }
 
 }

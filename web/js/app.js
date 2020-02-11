@@ -1,6 +1,6 @@
 
 
-
+//Formato de fecha valido 12-02-2020
 // Setup the calendar with the current date
 $(document).ready(function(){
     var date = new Date();
@@ -16,19 +16,7 @@ $(document).ready(function(){
     $(".dates-table .table-date").click({date: date}, date_click);
     //show_events(events, months[date.getMonth()], today);
 
-    $(".dates-table .table-date").on("click", function (){
-        $("#reservas").load("app/templates/reservas.php");
-        // var fecha = date.toLocaleDateString();
-        var mes=date.getMonth()+1;
-        var fecha = date.getDate()+"-"+mes+"-"+date.getFullYear();
-        console.log(fecha);
-        $.ajax({url: "index.php?ctl=reservas",type: "GET", data: {fecha: fecha}, success: function(result){
-     //   var reservationsArray = reservations;
-     console.log(result);
-     
-        console.log(fecha);
-    }});
-    });
+    handleDayClick(date);
 });
 
 
@@ -76,6 +64,47 @@ function init_calendar(date) {
     // Append the last row and set the current year
     calendar_days.append(row);
     $(".year").text(year);
+    handleDayClick(date);
+}
+
+function handleDayClick(date) {
+    $(".dates-table .table-date").on("click", function ($event){
+        $event.stopImmediatePropagation();
+        // comprobamos que se haga click sobre un td con datos
+        // para hacerlo que nunca falle no solo comprobamos el interior del elemento
+        if ($event &&
+            $event.currentTarget &&
+            $event.currentTarget.innerText &&
+            $event.currentTarget.innerText.length > 0) {
+                $("#reservas").load("app/templates/reservas.php");
+                // parseamos la fecha en base 10
+                var dia = parseInt($event.currentTarget.innerText, 10);
+                var mes=date.getMonth()+1;
+                var fecha = dia + "-" + mes + "-" + date.getFullYear();
+                console.log('fecha1',fecha);
+                window.fechaSeleccionada = fecha;
+
+                //borramos la clase de dia activo y se la ponemos al clickeado
+                $(".dates-table .table-date").removeClass('active-date');
+                $($event.currentTarget).addClass('active-date');
+
+                // entiendo que aqui se recogeran las reservas ya hechas del día, en el futuro
+
+                /**
+                    $("#reservar").on("click", function() {
+                        $.ajax({
+                                url: "index.php?ctl=reservas",
+                                type: "GET",
+                                data: {fecha: fecha},
+                                success: function(result){
+                                    console.log(result);
+                            //   var reservationsArray = reservations;
+                                }
+                        });
+                    });
+                 */
+        }
+    });
 }
 
 // Get the number of days in a given month/year
@@ -85,10 +114,10 @@ function days_in_month(month, year) {
     return (monthEnd - monthStart) / (1000 * 60 * 60 * 24);    
 }
 
+// esto deja de tener uso
 // Event handler for when a date is clicked
 function date_click(event) {
     var date = event.data.date;
-
     $(".active-date").removeClass("active-date");
     $(this).addClass("active-date");
     date.setDate(parseInt($(".active-date").html()));
