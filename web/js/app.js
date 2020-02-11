@@ -99,6 +99,7 @@ function month_click(event) {
     var date = event.data.date;
     $(".active-month").removeClass("active-month");
     $(this).addClass("active-month");
+    $(".active-date").removeClass("active-date");
     var new_month = $(".month").index(this);
     date.setMonth(new_month);
     init_calendar(date);

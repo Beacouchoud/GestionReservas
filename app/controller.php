@@ -147,10 +147,11 @@ class Controller
             $fecha = "25/02/2020";
             $id_aula = "1";
             $params = array(
-                'reservas' => $model->verReservas($fecha, $id_aula)
+                'reservas' => $model->reservas($fecha, $id_aula)
             );
-            $a = $model->verReservas($fecha, $id_aula);
+            $a = $model->reservas($fecha, $id_aula);
             print_r($a[0]['hora']);
+            echo $a;
             // Recogemos los dos tipos de excepciones que se pueden producir
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
