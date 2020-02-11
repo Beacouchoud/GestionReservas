@@ -1,5 +1,7 @@
 <?php ob_start() ?>
-<h2>Sing Up</h2>
+<div class="row ">
+<h2 class="col-12 text-center" >Sing Up</h2>
+
 <form name="formsingup"  method="POST" class="form-row d-flex justify-content-center">
  <div class="col-3">
  <div class="row">
@@ -32,9 +34,9 @@
         <input type="file" size="44" name="imagen" id="imagen" accept="image/x-png,image/gif,image/jpeg" >
     </div>
 
-<div class="col-12 d-flex justify-content-around">
-    <button type="submit" class="btn btn-primary btn-lg" id="singup" name="singup" value="Sign up" >Sign up</button>
-    <button type="button" class="btn btn-secondary btn-lg" id="gotToLogin" name="gotToLogin" value="Log in" >Log In</button>
+<div class="col-12  d-flex justify-content-around">
+    <button type="submit" class="btn btn-primary btn-sm " id="singup" name="singup" value="Sign up" >Sign up</button>
+    <button type="button" class="btn btn-secondary btn-sm " id="gotToLogin" name="gotToLogin" value="Log in" >Log In</button>
 </div>
     </div>
  </div>
@@ -46,8 +48,8 @@
         });
     }
 </script>
-
+</div>
 
 <?php $contenido = ob_get_clean() ?>
 
-<?php include 'layoutinicial.php' ?>
+<?php include 'layouthome.php' ?>

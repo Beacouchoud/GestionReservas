@@ -1,11 +1,8 @@
 <?php ob_start() ?>
-<h2>Log in</h2>
-<!-- <form name="formlogin" action="index.php?ctl=login" method="POST">
-<p>User<input type="text" name="nombre_user" id="nombre_user"> </p>
-<p>Password<input type="password" name="pass" id="pass"> </p>
-<p> <input type="button" value="Sing in" name="login" id="login" > </p>
-<a href="#">Forgot my password </a> -->
-<form name="formlogin" method="POST">
+<div class="col center-block ">
+
+<h2 class="text-center">Log in</h2>
+<form name="formlogin" method="POST" class="text-center">
 <div class="form-label">
     <label for="username">
         Email
@@ -41,8 +38,7 @@
         });
     }
 </script>
-
+</div>
 <?php $contenido = ob_get_clean() ?>
 
 <?php include 'layouthome.php' ?>
-
