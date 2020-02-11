@@ -144,13 +144,13 @@ class Controller
         try {
             $model = new Model();
            // $fecha = $_GET["fecha"];
-            $fecha = "25/02/2020";
-            $id_aula = "1";
+            $fecha = $_GET['fecha'];
+            $id_aula = $_GET['aula'];
             $params = array(
                 'reservas' => $model->reservas($fecha, $id_aula)
             );
             $a = $model->reservas($fecha, $id_aula);
-            echo $_GET['fecha'];
+            echo json_encode($a);
             // Recogemos los dos tipos de excepciones que se pueden producir
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");

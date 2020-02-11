@@ -13,7 +13,7 @@
         <tbody>
             <?php foreach ($params['aulas'] as $aula) :?>
                 <tr>
-                    <td scope="row"> <a href="index.php?ctl=calendario"> <?php echo $aula['num_aula']?></a></td>
+                    <td scope="row"> <a class="aulaId" href="index.php?ctl=calendario"> <?php echo $aula['num_aula']?></a></td>
                     <td><?php echo $aula['descripcion_aula'] ?></td>
                     <td >
                         <!--TODO: si es administrador mostrar checkbox -->
@@ -23,6 +23,14 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    window.onload = function(){
+        $('.aulaId').click(function(event){
+            saveLocalStorage(this.innerText, 'aula');
+        });
+    }
+</script>
 
 <!-- se puede recorrer con un foreach -->
 <!-- habrá que ponerlo dentro de un enlace -->

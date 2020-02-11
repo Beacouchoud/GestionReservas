@@ -79,30 +79,39 @@ function handleDayClick(date) {
                 $("#reservas").load("app/templates/reservas.php");
                 // parseamos la fecha en base 10
                 var dia = parseInt($event.currentTarget.innerText, 10);
-                var mes=date.getMonth()+1;
+                var mes=date.getMonth() +1;
                 var fecha = dia + "-" + mes + "-" + date.getFullYear();
                 console.log('fecha1',fecha);
-                window.fechaSeleccionada = fecha;
+                saveLocalStorage(fecha, 'fecha');
 
                 //borramos la clase de dia activo y se la ponemos al clickeado
                 $(".dates-table .table-date").removeClass('active-date');
                 $($event.currentTarget).addClass('active-date');
 
                 // entiendo que aqui se recogeran las reservas ya hechas del día, en el futuro
-
-                /**
-                    $("#reservar").on("click", function() {
-                        $.ajax({
-                                url: "index.php?ctl=reservas",
-                                type: "GET",
-                                data: {fecha: fecha},
-                                success: function(result){
-                                    console.log(result);
-                            //   var reservationsArray = reservations;
-                                }
-                        });
-                    });
-                 */
+                
+                // recoger las reservas ya hechas del dia y deshabilitar las opciones con la misma hora de inicio
+                var aula = parseInt(getLocalStorage('aula'), 10);
+                console.log('parametros de la consulta', fecha, aula)
+                $.ajax({
+                        url: "index.php?ctl=reservas",
+                        type: "GET",
+                        dataType: 'json',
+                        data: {
+                            fecha: fecha,
+                            aula: aula
+                        },
+                        success: function(result){
+                            // en el dato result debe venir un array con las reservas de ese dia
+                            console.log('reservas previas', result);
+                            $('#horas option').removeAttr('disabled')
+                            result.forEach(reserva => {
+                                $('#horas option[value="' + reserva.hora +'"]').attr('disabled', true);
+                            });
+                    //   var reservationsArray = reservations;
+                        }
+                });
+                 
         }
     });
 }

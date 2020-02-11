@@ -26,7 +26,7 @@ function removeLocalStorage(key) {
     localStorage.removeItem(key);
 }
 
-
+/*
 function startTimer() {
     var interval = window.setInterval(function() {
         console.log('check status login and activity')
@@ -52,4 +52,4 @@ if (location.href !== 'http://localhost/'
 $('html').on('mousemove', function() {
     lastMove = new Date();
 });
-
+*/

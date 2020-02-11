@@ -23,13 +23,13 @@ class Model extends PDO
         return $result->fetchAll();
     }
     
-    public function reservas($f, $a) {
-        $consulta = "select * from reservas where fecha = :fecha and id_aula = :id_aula";
+    public function reservas($f, $a) {        
+        $consulta = "select id_reserva, id_usuario, fecha, hora from reservas rs, aulas au where au.id_aula = rs.id_aula and rs.fecha = :fecha and au.num_aula = :id_aula";
         
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':fecha', $f);
         $result->bindParam(':id_aula', $a);
-        $result->execute();
+        $result->execute(); 
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
