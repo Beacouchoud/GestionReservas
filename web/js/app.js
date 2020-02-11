@@ -1,6 +1,4 @@
-var hours = ["08:00 - 09:00","09:00 - 10:00","10:00 - 11:00","11:00 - 12:00", "12:00 - 13:00", 
-"13:00 - 14:00", "14:00 - 15:00", "15:00 - 16:00", "16:00 - 17:00", "17:00 - 18:00","18:00 - 19:00", 
-"19:00 - 20:00", "20:00 - 21:00","21:00 - 22:00"];
+
 
 
 // Setup the calendar with the current date
@@ -18,16 +16,21 @@ $(document).ready(function(){
     $(".dates-table .table-date").click({date: date}, date_click);
     //show_events(events, months[date.getMonth()], today);
 
-    $(".dates-table .table-date").on("click", function (date){
+    $(".dates-table .table-date").on("click", function (){
         $("#reservas").load("app/templates/reservas.php");
-        var fecha = date.toLocaleDateString();
+        // var fecha = date.toLocaleDateString();
+        var mes=date.getMonth()+1;
+        var fecha = date.getDate()+"-"+mes+"-"+date.getFullYear();
         console.log(fecha);
-        $.ajax({url: "index.php?ctl=reservas",type: "GET", data: {fecha: fecha}, success: function(respuesta){
+        $.ajax({url: "index.php?ctl=reservas",type: "GET", data: {fecha: fecha}, success: function(result){
      //   var reservationsArray = reservations;
+     console.log(result);
+     
         console.log(fecha);
     }});
     });
 });
+
 
 
 
@@ -65,7 +68,7 @@ function init_calendar(date) {
             if(today===day && $(".active-date").length===0) {
                 curr_date.addClass("active-date");
               //  show_events(events, months[month], day);
-              show_hours(date);
+            //   show_hours(date);
             }
             row.append(curr_date);
         }
@@ -99,7 +102,6 @@ function month_click(event) {
     var date = event.data.date;
     $(".active-month").removeClass("active-month");
     $(this).addClass("active-month");
-    $(".active-date").removeClass("active-date");
     var new_month = $(".month").index(this);
     date.setMonth(new_month);
     init_calendar(date);
@@ -215,18 +217,17 @@ function new_event_json(name, count, date, day) {
 
 
 
-function show_hours(date) {
-    console.log(date);
+// function show_hours(date) {
+//     console.log(date);
    
-    var fecha = date.toLocaleDateString();
-    console.log(fecha);
-    $.ajax({url: "index.php?ctl=calendario",type: "GET", data: {fecha: fecha}, success: function(){
-     //   var reservationsArray = reservations;
-        console.log(fecha);
-    }});
-}
+//     var fecha = date.toLocaleDateString();
+//     console.log(fecha);
+//     $.ajax({url: "index.php?ctl=calendario",type: "GET", data: {fecha: fecha}, success: function(){
+//      //   var reservationsArray = reservations;
+//         console.log(fecha);
+//     }});
+// }
 
-// $("td").on("click", show_hours);
 
 
 
