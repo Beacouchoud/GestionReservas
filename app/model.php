@@ -149,7 +149,7 @@ class Model extends PDO
 
     public function crearProfesor($id_usuario, $nombre, $apellido, $email, $password, $imagen)
     {
-        $consulta = "INSERT INTO usuarios(nombre, apellido, email, password, imagen, id_usuario, id_roles) VALUES (:nombre, :apellido, :email, :password, :imagen, :id_usuario, 1)";
+        $consulta = "INSERT INTO usuarios(nombre, apellido, email, password, imagen, id_usuario, id_roles) VALUES (:nombre, :apellido, :email, :password, :imagen, :id_usuario, 0)";
 
         $result = $this->conexion->prepare($consulta);
         $result->bindValue(':id_usuario', $id_usuario, PDO::PARAM_STR);
@@ -194,4 +194,12 @@ class Model extends PDO
         return $result->execute();
     }
 
+    public function darDeAltaProfesor($id_usuario)
+    {
+        $consulta = "UPDATE FROM usuarios SET id_roles=1 WHERE id_usuario = :id_usuario";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindValue(':id_usuario', $id_usuario, PDO::PARAM_STR);
+        return $result->execute();
+    }
 }

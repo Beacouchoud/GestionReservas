@@ -455,7 +455,33 @@ class SegundoController
 
     public function darDeAlta()
     {
-//dar de alta profesores
+        try {
+            $model = new Model();
+            $validation = new Validacion();
+
+            $regla = array(
+                array(
+                    'name' => 'id_usuario',
+                    'regla' => 'no-empty,numeric',
+                ),
+            );
+            $isValid = $validation->rules($regla, $_POST);
+
+            if ($isValid) {
+                $id_usuario = recoge('id_usuario');
+                $a = $model->darDeAltaProfesor($id_usuario);
+                echo json_encode($a);
+            } else {
+                throw new Exception(); //Para que devuelva error en el AJAX
+            }
+
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+            echo json_encode(["error" => true]);
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            echo json_encode(["error" => true]);
+        }
     }
 
 }
