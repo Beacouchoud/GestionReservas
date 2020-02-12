@@ -146,4 +146,51 @@ class Model extends PDO
         return $result->execute();
     }
 
+    public function crearProfesor($id_usuario, $nombre, $apellido, $email, $password, $imagen)
+    {
+        $consulta = "INSERT INTO usuarios(nombre, apellido, email, password, imagen, id_usuario, id_roles) VALUES (:nombre, :apellido, :email, :password, :imagen, :id_usuario, 1)";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindValue(':id_usuario', $id_usuario, PDO::PARAM_STR);
+        $result->bindValue(':nombre', $nombre, PDO::PARAM_STR);
+        $result->bindValue(':apellido', $apellido, PDO::PARAM_STR);
+        $result->bindValue(':email', $email, PDO::PARAM_STR);
+        $result->bindValue(':password', $password, PDO::PARAM_STR);
+        $result->bindValue(':imagen', $imagen, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
+    public function modificarProfesor($id_usuario, $nombre, $apellido, $email, $password, $imagen)
+    {
+        $consulta = "UPDATE FROM usuarios SET nombre=:nombre, apellido=:apellido, email=:email, password=:password, imagen=:imagen, WHERE id_usuario = :id_usuario and id_roles=1";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindValue(':id_usuario', $id_usuario, PDO::PARAM_STR);
+        $result->bindValue(':nombre', $nombre, PDO::PARAM_STR);
+        $result->bindValue(':apellido', $apellido, PDO::PARAM_STR);
+        $result->bindValue(':email', $email, PDO::PARAM_STR);
+        $result->bindValue(':password', $password, PDO::PARAM_STR);
+        $result->bindValue(':imagen', $imagen, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
+    public function habilitarProfesor($id_usuario, $habilitar)
+    {
+        $consulta = "UPDATE FROM usuarios SET habilitado=:habilitar WHERE id_usuario = :id_usuario and id_roles = 1";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindValue(':id_usuario', $id_usuario, PDO::PARAM_STR);
+        $result->bindValue(':habilitar', $habilitar, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
+    public function borrarProfesor($id_usuario)
+    {
+        $consulta = "DELETE FROM usuarios WHERE id_usuario = :id_usuario and id_roles = 1";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindValue(':id_usuario', $id_aula, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
 }

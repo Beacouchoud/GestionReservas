@@ -280,4 +280,177 @@ class SegundoController
         }
     }
 
+    public function crearProfesor()
+    {
+        try {
+            $model = new Model();
+            $validation = new Validacion();
+
+            $imagen = validateFile("imagen", "./img_usuarios/");
+
+            $regla = array(
+                array(
+                    'name' => 'id_usuario',
+                    'regla' => 'no-empty,numeric',
+                ),
+                array(
+                    'name' => 'nombre',
+                    'regla' => 'no-empty,name',
+                ),
+                array(
+                    'name' => 'apellido',
+                    'regla' => 'no-empty,name',
+                ),
+                array(
+                    'name' => 'email',
+                    'regla' => 'no-empty,email',
+                ),
+                array(
+                    'name' => 'password',
+                    'regla' => 'no-empty,password',
+                ),
+            );
+            $isValid = $validation->rules($regla, $_POST);
+
+            if ($isValid && $imagen !== false) {
+                $id_usuario = recoge('id_usuario');
+                $nombre = recoge('nombre');
+                $apellido = recoge('apellido');
+                $email = recoge('email');
+                $password = recoge('password');
+                $a = $model->crearProfesor($id_usuario, $nombre, $apellido, $email, $password, $imagen);
+                echo json_encode($a);
+            } else {
+                throw new Exception(); //Para que devuelva error en el AJAX
+            }
+
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+            echo json_encode(["error" => true]);
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            echo json_encode(["error" => true]);
+        }
+    }
+
+    public function modificarProfesor()
+    {
+        try {
+            $model = new Model();
+            $validation = new Validacion();
+
+            $imagen = validateFile("imagen", "./img_usuarios/");
+
+            $regla = array(
+                array(
+                    'name' => 'id_usuario',
+                    'regla' => 'no-empty,numeric',
+                ),
+                array(
+                    'name' => 'nombre',
+                    'regla' => 'no-empty,name',
+                ),
+                array(
+                    'name' => 'apellido',
+                    'regla' => 'no-empty,name',
+                ),
+                array(
+                    'name' => 'email',
+                    'regla' => 'no-empty,email',
+                ),
+                array(
+                    'name' => 'password',
+                    'regla' => 'no-empty,password',
+                ),
+            );
+            $isValid = $validation->rules($regla, $_POST);
+
+            if ($isValid && $imagen !== false) {
+                $id_usuario = recoge('id_usuario');
+                $nombre = recoge('nombre');
+                $apellido = recoge('apellido');
+                $email = recoge('email');
+                $password = recoge('password');
+                $a = $model->modificarProfesor($id_usuario, $nombre, $apellido, $email, $password, $imagen);
+                echo json_encode($a);
+            } else {
+                throw new Exception(); //Para que devuelva error en el AJAX
+            }
+
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+            echo json_encode(["error" => true]);
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            echo json_encode(["error" => true]);
+        }
+    }
+
+    public function habilitarProfesor()
+    {
+        try {
+            $model = new Model();
+            $validation = new Validacion();
+
+            $regla = array(
+                array(
+                    'name' => 'id_usuario',
+                    'regla' => 'no-empty,numeric',
+                ),
+                array(
+                    'name' => 'habilitar',
+                    'regla' => 'no-empty,bool',
+                ),
+            );
+            $isValid = $validation->rules($regla, $_POST);
+
+            if ($isValid) {
+                $id_usuario = recoge('id_usuario');
+                $habilitar = recoge('habilitar');
+                $a = $model->habilitarProfesor($id_usuario, $habilitar);
+                echo json_encode($a);
+            } else {
+                throw new Exception(); //Para que devuelva error en el AJAX
+            }
+
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+            echo json_encode(["error" => true]);
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            echo json_encode(["error" => true]);
+        }
+    }
+
+    public function borrarProfesor()
+    {
+        try {
+            $model = new Model();
+            $validation = new Validacion();
+
+            $regla = array(
+                array(
+                    'name' => 'id_usuario',
+                    'regla' => 'no-empty,numeric',
+                ),
+            );
+            $isValid = $validation->rules($regla, $_POST);
+
+            if ($isValid) {
+                $id_usuario = recoge('id_usuario');
+                $a = $model->borrarProfesor($id_usuario);
+                echo json_encode($a);
+            } else {
+                throw new Exception(); //Para que devuelva error en el AJAX
+            }
+
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+            echo json_encode(["error" => true]);
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            echo json_encode(["error" => true]);
+        }
+    }
+
 }
