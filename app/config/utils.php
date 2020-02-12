@@ -89,3 +89,9 @@ function validateFile($fileName, $path, &$errors = [])
 
     return $final_file_name;
 }
+
+function blowfishCrypt($toEncrypt)
+{
+    $saltHash = '$2a$09$sileesestoesdemasiadotarde$';
+    return crypt($toEncrypt, $saltHash);
+}

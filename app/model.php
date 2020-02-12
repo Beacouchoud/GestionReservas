@@ -43,7 +43,7 @@ class Model extends PDO
         $result->bindParam(':nombre', $n);
         $result->bindParam(':apellido', $a);
         $result->bindParam(':email', $e);
-        $result->bindParam(':password', $p);
+        $result->bindParam(':password', blowfishCrypt($p));
         $result->bindParam('id_roles', $id_roles);
         $result->bindParam('habilitado', $habilitado);
         $result->bindParam('imagen', $img);
@@ -68,14 +68,15 @@ class Model extends PDO
     {
 
         // $email = $email + '@algo';
-        $consulta = "SELECT * from usuarios where email = :email and password = :pwd";
+        $consulta = "SELECT * from usuarios where email = :email";
 
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':email', $email);
         $result->bindParam(':pwd', $pwd);
         $result->execute();
         $user = $result->fetch(PDO::FETCH_ASSOC);
-        if ($user != null) {
+
+        if (blowfishCrypt($pwd) == $user[0]["password"]) {
             anyadirSesion("user", $user[0]["id_usuario"]);
             anyadirSesion("acceso", $user[0]["id_roles"]);
             return JSON_encode($user);
