@@ -32,30 +32,6 @@ class Model extends PDO
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function hacerReserva($f, $a, $h)
-    {
-        $consulta = "insert into reservas(id_usuario, id_aula, fecha, hora) values(:id_usuario, :id_aula, :fecha, :hora)";
-
-        $result = $this->conexion->prepare($consulta);
-        $result->bindValue(':id_usuario', $_SESSION["user"], PDO::PARAM_STR);
-        $result->bindValue(':id_aula', $a, PDO::PARAM_STR);
-        $result->bindValue(':fecha', $f, PDO::PARAM_STR);
-        $result->bindValue(':hora', $h, PDO::PARAM_STR);
-        return $result->execute();
-    }
-
-    public function borrarReserva($f, $a, $h)
-    {
-        $consulta = "DELETE FROM reservas WHERE  id_usuario=:id_usuario and id_aula = :id_aula and fecha = :fecha and hora = :hora)";
-
-        $result = $this->conexion->prepare($consulta);
-        $result->bindValue(':id_usuario', $_SESSION["user"], PDO::PARAM_STR);
-        $result->bindValue(':id_aula', $a, PDO::PARAM_STR);
-        $result->bindValue(':fecha', $f, PDO::PARAM_STR);
-        $result->bindValue(':hora', $h, PDO::PARAM_STR);
-        return $result->execute();
-    }
-
     public function insertarUsuario($n, $a, $e, $p)
     {
         $consulta = "INSERT into usuarios(nombre, apellido, email, password, id_roles, habilitado, imagen) values (:nombre, :apellido, :email, :password, :id_roles, :habilitado, :imagen)";
@@ -106,6 +82,68 @@ class Model extends PDO
         } else {
             return null;
         }
+    }
+
+    public function hacerReserva($f, $a, $h)
+    {
+        $consulta = "insert into reservas(id_usuario, id_aula, fecha, hora) values(:id_usuario, :id_aula, :fecha, :hora)";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindValue(':id_usuario', $_SESSION["user"], PDO::PARAM_STR);
+        $result->bindValue(':id_aula', $a, PDO::PARAM_STR);
+        $result->bindValue(':fecha', $f, PDO::PARAM_STR);
+        $result->bindValue(':hora', $h, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
+    public function borrarReserva($f, $a, $h)
+    {
+        $consulta = "DELETE FROM aulas WHERE id_aula = :id_aula";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindValue(':id_aula', $a, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
+    public function crearAula($id_aula, $num_aula, $habilitado, $descripcion_aula)
+    {
+        $consulta = "INSERT INTO aulas(id_aula, num_aula, habilitado, descripcion_aula) VALUES (:id_aula, :num_aula, 0, :descripcion_aula)";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindValue(':id_aula', $id_aula, PDO::PARAM_STR);
+        $result->bindValue(':num_aula', $num_aula, PDO::PARAM_STR);
+        $result->bindValue(':descripcion_aula', $descripcion_aula, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
+    public function modificarAula($id_aula, $num_aula, $habilitado, $descripcion_aula)
+    {
+        $consulta = "UPDATE FROM aulas SET num_aula=:num_aula, descripcion_aula=:descripcion_aula, WHERE id_aula = :id_aula";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindValue(':id_aula', $id_aula, PDO::PARAM_STR);
+        $result->bindValue(':num_aula', $num_aula, PDO::PARAM_STR);
+        $result->bindValue(':descripcion_aula', $descripcion_aula, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
+    public function habilitarAula($id_aula, $habilitar)
+    {
+        $consulta = "UPDATE FROM aulas SET habilitado=:habilitar WHERE id_aula = :id_aula";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindValue(':id_aula', $id_aula, PDO::PARAM_STR);
+        $result->bindValue(':habilitar', $habilitar, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
+    public function borrarAula($id_aula)
+    {
+        $consulta = "DELETE FROM aulas WHERE id_aula = :id_aula";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindValue(':id_aula', $id_aula, PDO::PARAM_STR);
+        return $result->execute();
     }
 
 }
