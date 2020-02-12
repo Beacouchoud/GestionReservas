@@ -3,6 +3,7 @@
 // carga del modelo y los controladores
 require_once __DIR__ . '/app/config/Config.php';
 require_once __DIR__ . '/app/config/utils.php';
+require_once __DIR__ . '/app/config/Validacion.php';
 require_once __DIR__ . '/app/Model.php';
 require_once __DIR__ . '/app/Controller.php';
 require_once __DIR__ . '/app/SegundoController.php';
