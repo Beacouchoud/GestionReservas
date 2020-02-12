@@ -100,7 +100,8 @@ class Model extends PDO
         $result->execute();
         $user = $result->fetch(PDO::FETCH_ASSOC);
         if ($user != null) {
-            $_SESSION["user"] = $user[0]["id_usuario"];
+            anyadirSesion("user", $user[0]["id_usuario"]);
+            anyadirSesion("acceso", $user[0]["id_roles"]);
             return JSON_encode($user);
         } else {
             return null;

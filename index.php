@@ -9,17 +9,24 @@ require_once __DIR__ . '/app/Model.php';
 require_once __DIR__ . '/app/Controller.php';
 require_once __DIR__ . '/app/SegundoController.php';
 
+/*guia de reservas
+0 - sin registrar
+1 - registrado/profesor
+2 - admin
+ */
+
 // enrutamiento
 $map = array(
-    'aulas' => array('controller' => 'Controller', 'action' => 'aulas'), //aulas disponibles
-    'formlogin' => array('controller' => 'Controller', 'action' => 'formlogin'),
-    'formregistro' => array('controller' => 'Controller', 'action' => 'formregistro'),
-    'calendario' => array('controller' => 'Controller', 'action' => 'calendario'),
-    'reservas' => array('controller' => 'Controller', 'action' => 'reservas'),
-    'error' => array('controller' => 'Controller', 'action' => 'error'),
+    'aulas' => array('controller' => 'Controller', 'action' => 'aulas', 'acceso' => 1), //aulas disponibles
+    'formlogin' => array('controller' => 'Controller', 'action' => 'formlogin', 'acceso' => 0),
+    'formregistro' => array('controller' => 'Controller', 'action' => 'formregistro', 'acceso' => 0),
+    'calendario' => array('controller' => 'Controller', 'action' => 'calendario', 'acceso' => 1),
+    'reservas' => array('controller' => 'Controller', 'action' => 'reservas', 'acceso' => 1),
+    'error' => array('controller' => 'Controller', 'action' => 'error', 'acceso' => 0),
     //Operaciones AJAX
-    'hacerReserva' => array('controller' => 'SegundoController', 'action' => 'hacerReserva'),
-    'hacerReserva' => array('controller' => 'SegundoController', 'action' => 'hacerReserva'),
+    'hacerReserva' => array('controller' => 'SegundoController', 'action' => 'hacerReserva', 'acceso' => 1),
+    'borrarReserva' => array('controller' => 'SegundoController', 'action' => 'borrarReserva', 'acceso' => 1),
+    'cogerReservasDia' => array('controller' => 'SegundoController', 'action' => 'cogerReservasDia', 'acceso' => 1),
 
 );
 // parseo de la ruta
@@ -45,8 +52,12 @@ if (isset($_GET['ctl'])) {
 $controlador = $map[$ruta];
 // Ejecución del controlador asociado a la ruta
 if (method_exists($controlador['controller'], $controlador['action'])) {
-    call_user_func(array(new $controlador['controller'],
-        $controlador['action']));
+    if (recogerSesion("acceso") >= $controlador['acceso']) {
+        call_user_func(array(new $controlador['controller'],
+            $controlador['action']));
+    } else {
+        echo '<html><body><h1>No tienes acceso a esta pantalla </h1></body></html>';
+    }
 } else {
     header('Status: 404 Not Found');
     echo '<html><body><h1>Error 404: The controller <i>' .

@@ -3,7 +3,7 @@
 function sesionConf($user, $level)
 {
     $_SESSION["user"] = $user;
-    $_SESSION["level"] = $level;
+    $_SESSION["acceso"] = 0;
 }
 
 function iniciaSesion()
