@@ -44,6 +44,18 @@ class Model extends PDO
         return $result->execute();
     }
 
+    public function borrarReserva($f, $a, $h)
+    {
+        $consulta = "DELETE FROM reservas WHERE  id_usuario=:id_usuario and id_aula = :id_aula and fecha = :fecha and hora = :hora)";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindValue(':id_usuario', $_SESSION["user"], PDO::PARAM_STR);
+        $result->bindValue(':id_aula', $a, PDO::PARAM_STR);
+        $result->bindValue(':fecha', $f, PDO::PARAM_STR);
+        $result->bindValue(':hora', $h, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
     public function insertarUsuario($n, $a, $e, $p)
     {
         $consulta = "INSERT into usuarios(nombre, apellido, email, password, id_roles, habilitado, imagen) values (:nombre, :apellido, :email, :password, :id_roles, :habilitado, :imagen)";

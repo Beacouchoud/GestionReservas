@@ -39,7 +39,7 @@ class SegundoController
         }
     }
 
-    public function borrarrReserva()
+    public function hacerReserva()
     {
         try {
             $model = new Model();
@@ -80,7 +80,7 @@ class SegundoController
         }
     }
 
-    public function hacerReserva()
+    public function borrarrReserva()
     {
         try {
             $model = new Model();
@@ -106,7 +106,7 @@ class SegundoController
                 $fecha = recoge('fecha');
                 $id_aula = recoge('aula');
                 $hora = recoge('hora');
-                $a = $model->hacerReserva($fecha, $id_aula, $hora);
+                $a = $model->borrarReserva($fecha, $id_aula, $hora);
                 echo json_encode($a);
             } else {
                 throw new Exception(); //Para que devuelva error en el AJAX
