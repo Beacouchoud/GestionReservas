@@ -1,5 +1,5 @@
 <?php
-include_once ('config/Config.php');
+include_once 'config/Config.php';
 
 class Model extends PDO
 {
@@ -7,14 +7,12 @@ class Model extends PDO
     protected $conexion;
 
     public function __construct()
-    {    
+    {
         $this->conexion = new PDO('mysql:host=' . Config::$mvc_bd_hostname . ';dbname=' . Config::$mvc_bd_nombre . '', Config::$mvc_bd_usuario, Config::$mvc_bd_clave);
         // Realiza el enlace con la BD en utf-8
         $this->conexion->exec("set names utf8");
-        $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);     
+        $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
-
-   
 
     public function dameaulas()
     {
@@ -22,25 +20,38 @@ class Model extends PDO
         $result = $this->conexion->query($consulta);
         return $result->fetchAll();
     }
-    
-    public function reservas($f, $a) {        
+
+    public function reservas($f, $a)
+    {
         $consulta = "select id_reserva, id_usuario, fecha, hora from reservas rs, aulas au where au.id_aula = rs.id_aula and rs.fecha = :fecha and au.num_aula = :id_aula";
-        
+
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':fecha', $f);
         $result->bindParam(':id_aula', $a);
-        $result->execute(); 
+        $result->execute();
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function hacerReserva($f, $a, $h)
+    {
+        $consulta = "insert into reservas(id_usuario, id_aula, fecha, hora) values(:id_usuario, :id_aula, :fecha, :hora)";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindValue(':id_usuario', $_SESSION["user"], PDO::PARAM_STR);
+        $result->bindValue(':id_aula', $a, PDO::PARAM_STR);
+        $result->bindValue(':fecha', $f, PDO::PARAM_STR);
+        $result->bindValue(':hora', $h, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
     public function insertarUsuario($n, $a, $e, $p)
-    {    
+    {
         $consulta = "INSERT into usuarios(nombre, apellido, email, password, id_roles, habilitado, imagen) values (:nombre, :apellido, :email, :password, :id_roles, :habilitado, :imagen)";
 
         $result = $this->conexion->prepare($consulta);
-        $img="dfasdf";
-        $habilitado=0;
-        $id_roles=0;
+        $img = "dfasdf";
+        $habilitado = 0;
+        $id_roles = 0;
         $result->bindParam(':nombre', $n);
         $result->bindParam(':apellido', $a);
         $result->bindParam(':email', $e);
@@ -49,24 +60,24 @@ class Model extends PDO
         $result->bindParam('habilitado', $habilitado);
         $result->bindParam('imagen', $img);
         $result->execute();
-     
+
         return $result;
     }
 
     // public function dameUsuario($nombre_usuario)
     // {
-        
+
     //         $consulta = "select * from usuarios where nombre_usuario=:nombre_usuario";
-            
+
     //         $result = $this->conexion->prepare($consulta);
     //         $result->bindParam(':nombre_usuario', $nombre_usuario);
     //         $result->execute();
     //         return $result->fetch();
-            
-        
+
     // }
 
-    function logIn($email, $pwd) {
+    public function logIn($email, $pwd)
+    {
 
         // $email = $email + '@algo';
         $consulta = "SELECT * from usuarios where email = :email and password = :pwd";
@@ -77,13 +88,11 @@ class Model extends PDO
         $result->execute();
         $user = $result->fetch(PDO::FETCH_ASSOC);
         if ($user != null) {
+            $_SESSION["user"] = $user[0]["id_usuario"];
             return JSON_encode($user);
-        } else  {
+        } else {
             return null;
         }
     }
 
-
-
 }
-?>
