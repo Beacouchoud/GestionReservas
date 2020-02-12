@@ -453,4 +453,9 @@ class SegundoController
         }
     }
 
+    public function darDeAlta()
+    {
+//dar de alta profesores
+    }
+
 }
