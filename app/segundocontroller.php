@@ -453,7 +453,7 @@ class SegundoController
         }
     }
 
-    public function darDeAlta()
+    public function darDeAltaProfesor()
     {
         try {
             $model = new Model();
@@ -483,5 +483,4 @@ class SegundoController
             echo json_encode(["error" => true]);
         }
     }
-
 }

@@ -21,7 +21,7 @@ $("#guardarDatosProfesors").on("click", function () {
             }
         });
     });
-})
+});
 
 $id_usuario = recoge('id_usuario');
 $nombre = recoge('nombre');
@@ -48,7 +48,7 @@ $("#crearProfesor").on("click", function () {
             console.error(errorData);
         }
     });
-})
+});
 
 $("#tablaProfesors .habilitado").on("click", function () {
     $.ajax({
@@ -63,7 +63,25 @@ $("#tablaProfesors .habilitado").on("click", function () {
             console.log(data);
         },
         error: function (errorData) {
-            console.log("Error al habilitar/deshabilitar Profesors");
+            console.log("Error al habilitar/deshabilitar Profesores");
+            console.error(errorData);
+        }
+    });
+});
+
+$("#tablaProfesors .darAlta").on("click", function () {
+    $.ajax({
+        url: "index.php?ctl=darDeAltaProfesor",
+        type: "POST",
+        data: {
+            "id_Profesor": current.find(".id_usuario").text(),
+        },
+        success: function (data) {
+            console.log("Resultado exitoso de dar de alta Profesores");
+            console.log(data);
+        },
+        error: function (errorData) {
+            console.log("Error al dar de alta Profesores");
             console.error(errorData);
         }
     });

@@ -35,6 +35,7 @@ $map = array(
     'modificarProfesor' => array('controller' => 'SegundoController', 'action' => 'modificarProfesor', 'acceso' => 1),
     'habilitarProfesor' => array('controller' => 'SegundoController', 'action' => 'habilitarProfesor', 'acceso' => 1),
     'borrarProfesor' => array('controller' => 'SegundoController', 'action' => 'borrarProfesor', 'acceso' => 1),
+    'darDeAltaProfesor' => array('controller' => 'SegundoController', 'action' => 'darDeAltaProfesor', 'acceso' => 1),
 );
 
 // parseo de la ruta
