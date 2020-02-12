@@ -27,8 +27,16 @@ $map = array(
     'hacerReserva' => array('controller' => 'SegundoController', 'action' => 'hacerReserva', 'acceso' => 1),
     'borrarReserva' => array('controller' => 'SegundoController', 'action' => 'borrarReserva', 'acceso' => 1),
     'cogerReservasDia' => array('controller' => 'SegundoController', 'action' => 'cogerReservasDia', 'acceso' => 1),
-
+    'crearAula' => array('controller' => 'SegundoController', 'action' => 'crearAula', 'acceso' => 1),
+    'modificarAula' => array('controller' => 'SegundoController', 'action' => 'modificarAula', 'acceso' => 1),
+    'habilitarAula' => array('controller' => 'SegundoController', 'action' => 'habilitarAula', 'acceso' => 1),
+    'borrarAula' => array('controller' => 'SegundoController', 'action' => 'borrarAula', 'acceso' => 1),
+    'crearProfesor' => array('controller' => 'SegundoController', 'action' => 'crearProfesor', 'acceso' => 1),
+    'modificarProfesor' => array('controller' => 'SegundoController', 'action' => 'modificarProfesor', 'acceso' => 1),
+    'habilitarProfesor' => array('controller' => 'SegundoController', 'action' => 'habilitarProfesor', 'acceso' => 1),
+    'borrarProfesor' => array('controller' => 'SegundoController', 'action' => 'borrarProfesor', 'acceso' => 1),
 );
+
 // parseo de la ruta
 //  if (isset($_SESSION["user"])) {
 if (isset($_GET['ctl'])) {
