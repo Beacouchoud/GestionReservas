@@ -1,7 +1,7 @@
 <?php
 // web/index.php
 // carga del modelo y los controladores
-require_once __DIR__ . '/app/config/Config.php';
+require_once __DIR__ . '/app/config/config.php';
 require_once __DIR__ . '/app/config/utils.php';
 require_once __DIR__ . '/app/config/Validacion.php';
 require_once __DIR__ . '/app/config/Sesiones.php';

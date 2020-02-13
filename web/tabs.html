@@ -48,9 +48,13 @@
         current.addClass("active");
         $("#tabContainer .container").hide();
         $("#" + current.attr("tab")).show();
-    })
+    }) 
     $("#tabContainer .container").hide();
     $("#tabHeader .btn").first().trigger("click");
+    $("#containerAula").load("../app/templates/aulas.php")
+    
+    
+    
 </script>
 
 </html>

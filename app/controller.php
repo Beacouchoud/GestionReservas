@@ -1,5 +1,6 @@
 <?php
 // include ('libs/utils.php');
+ include_once ('./app/model.php');
 
 class Controller
 {
@@ -15,12 +16,16 @@ class Controller
             $username = recoge('username');
             $password = recoge('password');
             $user = $m->logIn($username, $password);
-            if ($user) {
+            if ($user !== false) {
                 // echo '<script> saveLocalStorage(' . $user . ')</script>';
-                header('Location: index.php?ctl=aulas');
+                //header('Location: index.php?ctl=aulas');
+                var_dump($user);
+                anyadirSesion("user", $user[0]["id_usuario"]);
+                anyadirSesion("acceso", $user[0]["id_roles"]);
             }
         }
-        require __DIR__ . '/templates/formlogin.php';
+
+        require __DIR__ . './templates/formlogin.php';
     }
 
     public function formregistro()

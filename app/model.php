@@ -72,17 +72,16 @@ class Model extends PDO
 
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':email', $email);
-        $result->bindParam(':pwd', $pwd);
-        $result->execute();
-        $user = $result->fetch(PDO::FETCH_ASSOC);
-
+        //$result->bindParam(':pwd', $pwd);
+        $result->execute(/* [
+            "email" => $email,
+            "pwd" => $pwd
+        ] */);
+        $user = $result->fetchAll();
         if (blowfishCrypt($pwd) == $user[0]["password"]) {
-            anyadirSesion("user", $user[0]["id_usuario"]);
-            anyadirSesion("acceso", $user[0]["id_roles"]);
-            return JSON_encode($user);
-        } else {
-            return null;
+            return $user;
         }
+            return false;
     }
 
     public function hacerReserva($f, $a, $h)
