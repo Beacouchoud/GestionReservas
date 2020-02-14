@@ -1,5 +1,6 @@
 
 <?php ob_start() ?>
+<a href="index.php?ctl=logout">Logout</a>
 <div class="col-6 offset-3">
     <!-- aqui pondremos los datos de aulas que sacaremos de la base de datos -->
     <table class="table table-hover">

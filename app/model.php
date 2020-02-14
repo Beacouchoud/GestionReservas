@@ -78,18 +78,21 @@ class Model extends PDO
     "pwd" => $pwd
     ] */);
         $user = $result->fetchAll();
-        if (blowfishCrypt($pwd) == $user[0]["password"]) {
-            return $user;
+        if (count($user) == 1) {
+            if (blowfishCrypt($pwd) == $user[0]["password"]) {
+                return $user;
+            }
         }
         return false;
     }
 
     public function hacerReserva($f, $a, $h)
     {
-        $consulta = "insert into reservas(id_usuario, id_aula, fecha, hora) values(:id_usuario, :id_aula, :fecha, :hora)";
-
+        $a=2;
+        $consulta = "INSERT into reservas (id_usuario, id_aula, fecha, hora) values (:id_usuario, :id_aula, :fecha, :hora)";
+        
         $result = $this->conexion->prepare($consulta);
-        $result->bindValue(':id_usuario', $_SESSION["user"], PDO::PARAM_STR);
+        $result->bindValue(':id_usuario',  recogerSesion("user"), PDO::PARAM_STR);
         $result->bindValue(':id_aula', $a, PDO::PARAM_STR);
         $result->bindValue(':fecha', $f, PDO::PARAM_STR);
         $result->bindValue(':hora', $h, PDO::PARAM_STR);

@@ -1,5 +1,4 @@
 
-
 //Formato de fecha valido 12-02-2020
 // Setup the calendar with the current date
 $(document).ready(function(){
@@ -284,3 +283,7 @@ const months = [
     "November", 
     "December" 
 ];
+
+
+//Añadiendo el evento reservar
+

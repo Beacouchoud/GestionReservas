@@ -1,4 +1,5 @@
 <?php ob_start() ?>
+<a href="index.php?ctl=logout">Logout</a>
 <!-- aqui pondremos El calendario (-_-) o eso creo (╯︵╰,) -->
 <link rel="stylesheet" href="web/css/style.css">
   <div class="content container">
@@ -43,7 +44,7 @@
                 </tbody> 
             </table>
         </div> 
-            <button class="button" id="add-button">Add Event</button>
+            <!-- <button class="button" id="add-button">Add Event</button> -->
         </div>
         </div>
         </div>

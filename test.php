@@ -2,6 +2,7 @@
 
 require_once "./app/config/utils.php";
 require_once "./app/config/config.php";
+require_once "./app/config/Sesiones.php";
 
 $conexion = new PDO(
     'mysql:host=' . Config::$mvc_bd_hostname .
@@ -13,13 +14,27 @@ $conexion = new PDO(
 // Realiza el enlace con la BD en utf-8
 $conexion->exec("set names utf8");
 $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+anyadirSesion("acceso", 2);
+anyadirSesion("user", "test");
 
 /*$test = $conexion->query("SELECT * FROM usuarios");
 var_dump($test->fetchAll());*/
 
-$insert = $conexion->prepare("UPDATE FROM usuarios SET id_roles='2' WHERE id_usuario='5'");
-$insert->execute();
+/* $insert = $conexion->prepare("UPDATE FROM usuarios SET id_roles='2' WHERE id_usuario='5'");
+$insert->execute(); */
 
+
+$consulta = "INSERT into reservas (id_usuario, id_aula, fecha, hora) values (:id_usuario, :id_aula, :fecha, :hora)";
+
+$result = $conexion->prepare($consulta);
+$result->bindValue(':id_usuario', 3, PDO::PARAM_STR);
+$result->bindValue(':id_aula', 1, PDO::PARAM_STR);
+$result->bindValue(':fecha', "2020-2-3", PDO::PARAM_STR);
+$result->bindValue(':hora', "18", PDO::PARAM_STR);
+return $result->execute();
+
+/* $insert = $conexion->prepare("UPDATE FROM usuarios SET id_roles='2' WHERE id_usuario='5'");
+$insert->execute(); */
 
 echo "<br>";
 

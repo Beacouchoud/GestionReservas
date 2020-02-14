@@ -18,14 +18,23 @@ class Controller
             $user = $m->logIn($username, $password);
             if ($user !== false) {
                 // echo '<script> saveLocalStorage(' . $user . ')</script>';
-                //header('Location: index.php?ctl=aulas');
-                var_dump($user);
+                header('Location: index.php?ctl=aulas');
+                //var_dump($user);
                 anyadirSesion("user", $user[0]["id_usuario"]);
                 anyadirSesion("acceso", $user[0]["id_roles"]);
             }
         }
 
         require __DIR__ . './templates/formlogin.php';
+    }
+
+    public function logout()
+    {
+        session_unset();
+        session_destroy();
+        session_abort();
+
+        header("Location: index.php");
     }
 
     public function formregistro()

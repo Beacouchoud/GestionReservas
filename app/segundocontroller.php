@@ -59,8 +59,8 @@ class SegundoController
                     'regla' => 'no-empty,horas',
                 ),
             );
-            $isValid = $validation->rules($regla, $_POST);
-
+            //$isValid = $validation->rules($regla, $_POST);
+            $isValid = true;
             if ($isValid) {
                 $fecha = recoge('fecha');
                 $id_aula = recoge('aula');
