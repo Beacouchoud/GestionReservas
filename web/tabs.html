@@ -29,6 +29,41 @@
         <div class="row" id="tabContainer">
             <div class="container w-100" id="containerProfesor">
                 <h2>Profesores</h2>
+                <legend>Formulario creación</legend>
+                <form action="" method="POST">
+                    <div class="form-group"></div>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre">
+
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" name="apellidos" id="apellidos">
+
+                    <label for="email">e-Mail</label>
+                    <input type="email" name="email" id="email">
+
+                    <label for="password">Contraseña</label>
+                    <input type="password" name="password" id="password">
+
+                    <label for="id_roles">Tipo usuario</label>
+                    <select name="id_roles" class="form-control" id="id_roles">
+                        <option value="0">Sin confirmar</option>
+                        <option value="1">Profesor</option>
+                        <option value="2">Admin</option>
+                    </select>
+
+                    <div class="input-group">
+                        <label for="habilitado">Habilitado</label>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" name="habilitado" id="habilitado"
+                                checked>
+                            <label class="custom-control-label" for="customSwitches"></label>
+                        </div>
+                    </div>
+
+                    <input type="button" value="Añadir" class="btn btn-primary">
+                </form>
+                <br>
+                <legend>Datos</legend>
                 <table class="table table-responsive table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
@@ -79,6 +114,28 @@
             </div>
             <div class="container w-100" id="containerAula">
                 <h2>Aulas</h2>
+                <legend>Formulario creación</legend>
+                <form action="" method="POST">
+                    <div class="form-group"></div>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre">
+
+                    <label for="descripcion">descripcion</label>
+                    <input type="text" name="descripcion" id="descripcion">
+
+                    <div class="input-group">
+                        <label for="habilitado">Habilitado</label>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" name="habilitado" id="habilitado"
+                                checked>
+                            <label class="custom-control-label" for="customSwitches"></label>
+                        </div>
+                    </div>
+
+                    <input type="button" value="Añadir" class="btn btn-primary">
+                </form>
+                <br>
+                <legend>Datos</legend>
                 <table class="table table-responsive table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
@@ -87,7 +144,6 @@
                             <th scope="col">Descripcion</th>
                             <th scope="col">Habilitado</th>
                             <th scope="col">Eliminar</th>
-                            <th scope="col">Dar de alta</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -102,7 +158,6 @@
                                 </div>
                             </td>
                             <td><button class="btn btn-danger">Eliminar</button></td>
-                            <td><button class="btn btn-primary">Dar alta</button></td>
                         </tr>
                         <tr>
                             <td>2</td>
@@ -115,14 +170,9 @@
                                 </div>
                             </td>
                             <td><button class="btn btn-danger">Eliminar</button></td>
-                            <td><button class="btn btn-primary">Dar alta</button></td>
                         </tr>
                     </tbody>
                 </table>
-
-
-
-
             </div>
             <div class="container w-100" id="containerElem3">
                 <h2>Extra</h2>
