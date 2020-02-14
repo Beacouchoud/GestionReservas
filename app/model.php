@@ -73,15 +73,15 @@ class Model extends PDO
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':email', $email);
         //$result->bindParam(':pwd', $pwd);
-        $result->execute(/* [
-            "email" => $email,
-            "pwd" => $pwd
-        ] */);
+        $result->execute( /* [
+    "email" => $email,
+    "pwd" => $pwd
+    ] */);
         $user = $result->fetchAll();
         if (blowfishCrypt($pwd) == $user[0]["password"]) {
             return $user;
         }
-            return false;
+        return false;
     }
 
     public function hacerReserva($f, $a, $h)
@@ -146,12 +146,12 @@ class Model extends PDO
         return $result->execute();
     }
 
-    public function crearProfesor($id_usuario, $nombre, $apellido, $email, $password, $imagen)
+    public function crearProfesor($id_roles, $nombre, $apellido, $email, $password, $imagen)
     {
-        $consulta = "INSERT INTO usuarios(nombre, apellido, email, password, imagen, id_usuario, id_roles) VALUES (:nombre, :apellido, :email, :password, :imagen, :id_usuario, 0)";
+        $consulta = "INSERT INTO usuarios(nombre, apellido, email, password, imagen, id_roles, id_roles) VALUES (:nombre, :apellido, :email, :password, :imagen, :id_roles, 0)";
 
         $result = $this->conexion->prepare($consulta);
-        $result->bindValue(':id_usuario', $id_usuario, PDO::PARAM_STR);
+        $result->bindValue(':id_roles', $id_roles, PDO::PARAM_STR);
         $result->bindValue(':nombre', $nombre, PDO::PARAM_STR);
         $result->bindValue(':apellido', $apellido, PDO::PARAM_STR);
         $result->bindValue(':email', $email, PDO::PARAM_STR);
