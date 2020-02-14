@@ -29,9 +29,100 @@
         <div class="row" id="tabContainer">
             <div class="container w-100" id="containerProfesor">
                 <h2>Profesores</h2>
+                <table class="table table-responsive table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">e-Mail</th>
+                            <th scope="col">Tipo usuario</th>
+                            <th scope="col">Habilitado</th>
+                            <th scope="col">Eliminar</th>
+                            <th scope="col">Dar de alta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>Wissy</td>
+                            <td>Tebal</td>
+                            <td>wissy@microsoft.com</td>
+                            <td>2</td>
+                            <td>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" checked>
+                                    <label class="custom-control-label" for="customSwitches"></label>
+                                </div>
+                            </td>
+                            <td><button class="btn btn-danger">Eliminar</button></td>
+                            <td><button class="btn btn-primary">Dar alta</button></td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>Bea</td>
+                            <td>Couchoud</td>
+                            <td>bea@internet-explorer.com</td>
+                            <td>2</td>
+                            <td>
+                                <div class="custom-control custom-switch">
+                                    <input checked type="checkbox" class="custom-control-input">
+                                    <label class="custom-control-label" for="customSwitches"></label>
+                                </div>
+                            </td>
+                            <td><button class="btn btn-danger">Eliminar</button></td>
+                            <td><button class="btn btn-primary">Dar alta</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
             <div class="container w-100" id="containerAula">
                 <h2>Aulas</h2>
+                <table class="table table-responsive table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Habilitado</th>
+                            <th scope="col">Eliminar</th>
+                            <th scope="col">Dar de alta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Wissy</td>
+                            <td>Tebal</td>
+                            <td>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" checked>
+                                    <label class="custom-control-label" for="customSwitches"></label>
+                                </div>
+                            </td>
+                            <td><button class="btn btn-danger">Eliminar</button></td>
+                            <td><button class="btn btn-primary">Dar alta</button></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Bea</td>
+                            <td>Couchoud</td>
+                            <td>
+                                <div class="custom-control custom-switch">
+                                    <input checked type="checkbox" class="custom-control-input">
+                                    <label class="custom-control-label" for="customSwitches"></label>
+                                </div>
+                            </td>
+                            <td><button class="btn btn-danger">Eliminar</button></td>
+                            <td><button class="btn btn-primary">Dar alta</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+
             </div>
             <div class="container w-100" id="containerElem3">
                 <h2>Extra</h2>
@@ -48,13 +139,10 @@
         current.addClass("active");
         $("#tabContainer .container").hide();
         $("#" + current.attr("tab")).show();
-    }) 
+    })
     $("#tabContainer .container").hide();
     $("#tabHeader .btn").first().trigger("click");
     $("#containerAula").load("../app/templates/aulas.php")
-    
-    
-    
 </script>
 
 </html>
