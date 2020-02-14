@@ -33,7 +33,7 @@ $("#crearProfesor").on("click", function () {
         url: "index.php?ctl=modificarProfesor",
         type: "POST",
         data: {
-            "id_usuario": $("#input_id_usuario").val(),
+            "id_roles": $("#id_roles").val(),
             "nombre": $("#input_nombre").val(),
             "apellido": $("#input_apellido").val(),
             "email": $("#input_email").val(),
